@@ -3,9 +3,6 @@ package krakend
 import (
 	"context"
 	"fmt"
-	"io"
-	"os"
-
 	krakendbf "github.com/devopsfaith/bloomfilter/krakend"
 	cel "github.com/devopsfaith/krakend-cel"
 	"github.com/devopsfaith/krakend-cobra"
@@ -31,6 +28,10 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/go-contrib/uuid"
 	"github.com/letgoapp/krakend-influx"
+	"go.opencensus.io/plugin/ochttp"
+	"io"
+	"os"
+	"strings"
 )
 
 // NewExecutor returns an executor for the cmd package. The executor initalizes the entire gateway by
@@ -85,6 +86,8 @@ func NewExecutor(ctx context.Context) cmd.Executor {
 			logger.Warning(err.Error())
 		}
 
+		customiseViews(logger)
+
 		if err := opencensus.Register(ctx, cfg, append(opencensus.DefaultViews, pubsub.OpenCensusViews...)...); err != nil {
 			logger.Warning("opencensus:", err.Error())
 		}
@@ -105,6 +108,7 @@ func NewExecutor(ctx context.Context) cmd.Executor {
 				return jose.FixedRejecter(false)
 			}),
 		})
+		logger.Info()
 
 		// setup the krakend router
 		routerFactory := router.NewFactory(router.Config{
@@ -121,6 +125,18 @@ func NewExecutor(ctx context.Context) cmd.Executor {
 
 		// start the engines
 		routerFactory.NewWithContext(ctx).Run(cfg)
+	}
+}
+
+func customiseViews(logger logging.Logger) {
+	for _, view := range opencensus.DefaultViews {
+		if strings.Contains(view.Name, "client") {
+			view.TagKeys = append(view.TagKeys, ochttp.KeyClientPath)
+			logger.Info("customised client metrics", view)
+		} else if strings.Contains(view.Name, "server") {
+			view.TagKeys = append(view.TagKeys, ochttp.Path)
+			logger.Info("customised server metrics", view)
+		}
 	}
 }
 
