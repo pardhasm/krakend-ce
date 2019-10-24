@@ -17,6 +17,7 @@ type customLog struct {
 	Level        string        `json:"level"`
 	Client       string        `json:"client"`
 	Method       string        `json:"method"`
+	Body         string        `json:"body"`
 	Path         string        `json:"path"`
 	Proto        string        `json:"proto"`
 	StatusCode   int           `json:"status"`
@@ -27,40 +28,36 @@ type customLog struct {
 }
 
 func formatLogStashMessage(clientIP string, timeStamp time.Time, method string, path string, request *http.Request, statusCode int, latency time.Duration, userAgent string, errorMessage string) string {
-	for key, value := range Paths {
-		if key.MatchString(path) {
-			path = value
-		}
-	}
+
+	buf := new(bytes.Buffer)
+	buf.ReadFrom(request.Body)
+	reqStr := buf.String()
 	innerLog := &customLog{
 		Client:       clientIP,
 		Timestamp:    timeStamp,
 		Version:      1,
 		Level:        "INFO",
 		Method:       method,
-		Path:         path,
+		Path:         generifyPath(path),
 		Proto:        request.Proto,
 		StatusCode:   statusCode,
 		Latency:      latency,
 		UserAgent:    userAgent,
 		ErrorMessage: errorMessage,
 		Header:       request.Header,
+		Body:         reqStr,
 	}
-
-	buf := new(bytes.Buffer)
-	buf.ReadFrom(request.Body)
-	reqStr := buf.String()
 
 	jinnerlog, err := json.Marshal(innerLog)
 	outerLog := &LogstashPattern{
 		Timestamp:    timeStamp,
 		Version:      1,
 		Level:        "INFO",
-		Message:      reqStr,
+		Message:      "kkk",
 		Client:       clientIP,
 		Module:       "[KRAKEND]",
 		Method:       method,
-		Path:         path,
+		Path:         generifyPath(path),
 		Proto:        request.Proto,
 		StatusCode:   statusCode,
 		Latency:      latency,
@@ -75,6 +72,15 @@ func formatLogStashMessage(clientIP string, timeStamp time.Time, method string, 
 	}
 
 	return strings.Replace(string(jsonOuterLog), "kkk", string(jinnerlog), 1)
+}
+
+func generifyPath(path string) string {
+	for key, value := range Paths {
+		if key.MatchString(path) {
+			path = value
+		}
+	}
+	return path
 }
 
 func FormatLog() func(param gin.LogFormatterParams) string {
