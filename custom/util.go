@@ -17,7 +17,6 @@ type customLog struct {
 	Level        string        `json:"level"`
 	Client       string        `json:"client"`
 	Method       string        `json:"method"`
-	Body         string        `json:"body"`
 	Path         string        `json:"path"`
 	Proto        string        `json:"proto"`
 	StatusCode   int           `json:"status"`
@@ -28,36 +27,36 @@ type customLog struct {
 }
 
 func formatLogStashMessage(clientIP string, timeStamp time.Time, method string, path string, request *http.Request, statusCode int, latency time.Duration, userAgent string, errorMessage string) string {
-
-	buf := new(bytes.Buffer)
-	buf.ReadFrom(request.Body)
-	reqStr := buf.String()
+	path = generifyPath(path)
 	innerLog := &customLog{
 		Client:       clientIP,
 		Timestamp:    timeStamp,
 		Version:      1,
 		Level:        "INFO",
 		Method:       method,
-		Path:         generifyPath(path),
+		Path:         path,
 		Proto:        request.Proto,
 		StatusCode:   statusCode,
 		Latency:      latency,
 		UserAgent:    userAgent,
 		ErrorMessage: errorMessage,
 		Header:       request.Header,
-		Body:         reqStr,
 	}
+
+	buf := new(bytes.Buffer)
+	buf.ReadFrom(request.Body)
+	reqStr := buf.String()
 
 	jinnerlog, err := json.Marshal(innerLog)
 	outerLog := &LogstashPattern{
 		Timestamp:    timeStamp,
 		Version:      1,
 		Level:        "INFO",
-		Message:      "kkk",
+		Message:      reqStr,
 		Client:       clientIP,
 		Module:       "[KRAKEND]",
 		Method:       method,
-		Path:         generifyPath(path),
+		Path:         path,
 		Proto:        request.Proto,
 		StatusCode:   statusCode,
 		Latency:      latency,
