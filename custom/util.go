@@ -1,10 +1,12 @@
-package krakend
+package custom
 
 import (
 	"bytes"
 	"encoding/json"
+	"github.com/devopsfaith/krakend/config"
 	"github.com/gin-gonic/gin"
 	"net/http"
+	"regexp"
 	"strings"
 	"time"
 )
@@ -25,6 +27,11 @@ type customLog struct {
 }
 
 func formatLogStashMessage(clientIP string, timeStamp time.Time, method string, path string, request *http.Request, statusCode int, latency time.Duration, userAgent string, errorMessage string) string {
+	for key, value := range Paths {
+		if key.MatchString(path) {
+			path = value
+		}
+	}
 	innerLog := &customLog{
 		Client:       clientIP,
 		Timestamp:    timeStamp,
@@ -70,7 +77,7 @@ func formatLogStashMessage(clientIP string, timeStamp time.Time, method string, 
 	return strings.Replace(string(jsonOuterLog), "kkk", string(jinnerlog), 1)
 }
 
-func formatLog() func(param gin.LogFormatterParams) string {
+func FormatLog() func(param gin.LogFormatterParams) string {
 	return func(param gin.LogFormatterParams) string {
 		a := formatLogStashMessage(
 			param.ClientIP,
@@ -102,3 +109,13 @@ type LogstashPattern struct {
 	ErrorMessage string        `json:"error"`
 	APIKey       string        `json:"api-key"`
 }
+
+func CreateRegex(cfg config.ServiceConfig) {
+	for _, e := range cfg.Endpoints {
+		path := e.Endpoint
+		regex, _ := RegexPath(path)
+		Paths[regex] = path
+	}
+}
+
+var Paths = make(map[*regexp.Regexp]string)

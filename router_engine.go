@@ -2,6 +2,7 @@ package krakend
 
 import (
 	botdetector "github.com/devopsfaith/krakend-botdetector/gin"
+	"github.com/devopsfaith/krakend-ce/custom"
 	cors "github.com/devopsfaith/krakend-cors/gin"
 	httpsecure "github.com/devopsfaith/krakend-httpsecure/gin"
 	lua "github.com/devopsfaith/krakend-lua/router/gin"
@@ -14,7 +15,8 @@ import (
 // NewEngine creates a new gin engine with some default values and a secure middleware
 func NewEngine(cfg config.ServiceConfig, logger logging.Logger, w io.Writer) *gin.Engine {
 	engine := gin.New()
-	engine.Use(gin.LoggerWithFormatter(formatLog()), gin.Recovery())
+	go custom.CreateRegex(cfg)
+	engine.Use(gin.LoggerWithFormatter(custom.FormatLog()), gin.Recovery())
 
 	engine.RedirectTrailingSlash = true
 	engine.RedirectFixedPath = true
