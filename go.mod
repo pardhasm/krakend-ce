@@ -67,6 +67,7 @@ require (
 	github.com/nats-io/nuid v1.0.1 // indirect
 	github.com/op/go-logging v0.0.0-20160315200505-970db520ece7 // indirect
 	github.com/opentracing/opentracing-go v1.1.0 // indirect
+	github.com/rs/cors v1.6.0
 	github.com/sony/gobreaker v0.0.0-20170530031423-e9556a45379e // indirect
 	github.com/spf13/viper v1.3.2 // indirect
 	github.com/streadway/amqp v0.0.0-20190402114354-16ed540749f6 // indirect
