@@ -63,7 +63,7 @@
   "port": 8003,
   "endpoints": [
     {
-      "endpoint": "",
+      "endpoint": "/",
       "method": "GET",
       "querystring_params": [
         "*"
@@ -74,10 +74,10 @@
       ],
       "backend": [
         {
-          "url_pattern": "",
+          "url_pattern": "/",
           "sd": "static",
           "host": [
-            "http://"
+            "http://uat-pl-web-api.incred.com"
           ],
           "disable_host_sanitize": false,
           "encoding": "no-op"
@@ -2561,6 +2561,94 @@
       "backend": [
         {
           "url_pattern": "/blacklist/customer/update",
+          "sd": "static",
+          "host": [
+            "http://uat-pl-web-api.incred.com"
+          ],
+          "disable_host_sanitize": false,
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/customer/update",
+      "method": "POST",
+      "querystring_params": [
+        "*"
+      ],
+      "output_encoding": "no-op",
+      "headers_to_pass": [
+        "*"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/customer/update",
+          "sd": "static",
+          "host": [
+            "http://uat-pl-web-api.incred.com"
+          ],
+          "disable_host_sanitize": false,
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/customer/update/{param0}",
+      "method": "POST",
+      "querystring_params": [
+        "*"
+      ],
+      "output_encoding": "no-op",
+      "headers_to_pass": [
+        "*"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/customer/update/{param0}",
+          "sd": "static",
+          "host": [
+            "http://uat-pl-web-api.incred.com"
+          ],
+          "disable_host_sanitize": false,
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/customer/update/{param0}/{param1}",
+      "method": "POST",
+      "querystring_params": [
+        "*"
+      ],
+      "output_encoding": "no-op",
+      "headers_to_pass": [
+        "*"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/customer/update/{param0}/{param1}",
+          "sd": "static",
+          "host": [
+            "http://uat-pl-web-api.incred.com"
+          ],
+          "disable_host_sanitize": false,
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/customer/update/{param0}/{param1}/{param2}",
+      "method": "POST",
+      "querystring_params": [
+        "*"
+      ],
+      "output_encoding": "no-op",
+      "headers_to_pass": [
+        "*"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/customer/update/{param0}/{param1}/{param2}",
           "sd": "static",
           "host": [
             "http://uat-pl-web-api.incred.com"
@@ -5389,6 +5477,28 @@
     {
       "endpoint": "/master/get/{param0}",
       "method": "GET",
+      "querystring_params": [
+        "*"
+      ],
+      "output_encoding": "no-op",
+      "headers_to_pass": [
+        "*"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/master/get/{param0}",
+          "sd": "static",
+          "host": [
+            "http://uat-pl-web-api.incred.com"
+          ],
+          "disable_host_sanitize": false,
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/master/get/{param0}",
+      "method": "POST",
       "querystring_params": [
         "*"
       ],
@@ -8765,6 +8875,28 @@
       "backend": [
         {
           "url_pattern": "/v2/application/create/selective",
+          "sd": "static",
+          "host": [
+            "http://uat-pl-web-api.incred.com"
+          ],
+          "disable_host_sanitize": false,
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/customer/create",
+      "method": "POST",
+      "querystring_params": [
+        "*"
+      ],
+      "output_encoding": "no-op",
+      "headers_to_pass": [
+        "*"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/customer/create",
           "sd": "static",
           "host": [
             "http://uat-pl-web-api.incred.com"
@@ -15243,6 +15375,94 @@
       ]
     },
     {
+      "endpoint": "/v2/master/get/{param0}",
+      "method": "POST",
+      "querystring_params": [
+        "*"
+      ],
+      "output_encoding": "no-op",
+      "headers_to_pass": [
+        "*"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/v2/master/get/{param0}",
+          "sd": "static",
+          "host": [
+            "http://uat-pl-web-api.incred.com"
+          ],
+          "disable_host_sanitize": false,
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/v2/master/get/{param0}/{param1}",
+      "method": "POST",
+      "querystring_params": [
+        "*"
+      ],
+      "output_encoding": "no-op",
+      "headers_to_pass": [
+        "*"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/v2/master/get/{param0}/{param1}",
+          "sd": "static",
+          "host": [
+            "http://uat-pl-web-api.incred.com"
+          ],
+          "disable_host_sanitize": false,
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/v2/master/get/{param0}/{param1}/{param2}",
+      "method": "POST",
+      "querystring_params": [
+        "*"
+      ],
+      "output_encoding": "no-op",
+      "headers_to_pass": [
+        "*"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/v2/master/get/{param0}/{param1}/{param2}",
+          "sd": "static",
+          "host": [
+            "http://uat-pl-web-api.incred.com"
+          ],
+          "disable_host_sanitize": false,
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
+      "endpoint": "/v2/master/get/{param0}/{param1}/{param2}/{param3}",
+      "method": "POST",
+      "querystring_params": [
+        "*"
+      ],
+      "output_encoding": "no-op",
+      "headers_to_pass": [
+        "*"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/v2/master/get/{param0}/{param1}/{param2}/{param3}",
+          "sd": "static",
+          "host": [
+            "http://uat-pl-web-api.incred.com"
+          ],
+          "disable_host_sanitize": false,
+          "encoding": "no-op"
+        }
+      ]
+    },
+    {
       "endpoint": "/v2/master/model/get/{param0}",
       "method": "GET",
       "querystring_params": [
@@ -19355,6 +19575,259 @@
           "encoding": "no-op"
         }
       ]
+    },
+    {
+      "endpoint": "/customer/applicant/remove",
+      "method": "POST",
+      "querystring_params": [
+        "*"
+      ],
+      "output_encoding": "no-op",
+      "headers_to_pass": [
+        "*"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/customer/applicant/remove",
+          "sd": "static",
+          "host": [
+            "http://uat-twl-web-api.incred.com"
+          ],
+          "disable_host_sanitize": false,
+          "encoding": "no-op"
+        }
+      ],
+      "concurrent_calls": 1
+    },
+    {
+      "endpoint": "/customer/contact/update",
+      "method": "POST",
+      "querystring_params": [
+        "*"
+      ],
+      "output_encoding": "no-op",
+      "headers_to_pass": [
+        "*"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/customer/contact/update",
+          "sd": "static",
+          "host": [
+            "http://uat-twl-web-api.incred.com"
+          ],
+          "disable_host_sanitize": false,
+          "encoding": "no-op"
+        }
+      ],
+      "concurrent_calls": 1
+    },
+    {
+      "endpoint": "/ekyc/response",
+      "method": "GET",
+      "querystring_params": [
+        "*"
+      ],
+      "output_encoding": "no-op",
+      "headers_to_pass": [
+        "*"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/ekyc/response",
+          "sd": "static",
+          "host": [
+            "http://uat-twl-web-api.incred.com"
+          ],
+          "disable_host_sanitize": false,
+          "encoding": "no-op"
+        }
+      ],
+      "concurrent_calls": 1
+    },
+    {
+      "endpoint": "/financial_profile/perfiosTxnCallback",
+      "method": "GET",
+      "querystring_params": [
+        "*"
+      ],
+      "output_encoding": "no-op",
+      "headers_to_pass": [
+        "*"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/financial_profile/perfiosTxnCallback",
+          "sd": "static",
+          "host": [
+            "http://uat-twl-web-api.incred.com"
+          ],
+          "disable_host_sanitize": false,
+          "encoding": "no-op"
+        }
+      ],
+      "concurrent_calls": 1
+    },
+    {
+      "endpoint": "/master/twl/programCode/add",
+      "method": "POST",
+      "querystring_params": [
+        "*"
+      ],
+      "output_encoding": "no-op",
+      "headers_to_pass": [
+        "*"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/master/twl/programCode/add",
+          "sd": "static",
+          "host": [
+            "http://uat-twl-web-api.incred.com"
+          ],
+          "disable_host_sanitize": false,
+          "encoding": "no-op"
+        }
+      ],
+      "concurrent_calls": 1
+    },
+    {
+      "endpoint": "/master/twl/programCode/get/{code}",
+      "method": "GET",
+      "querystring_params": [
+        "*"
+      ],
+      "output_encoding": "no-op",
+      "headers_to_pass": [
+        "*"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/master/twl/programCode/get/{code}",
+          "sd": "static",
+          "host": [
+            "http://uat-twl-web-api.incred.com"
+          ],
+          "disable_host_sanitize": false,
+          "encoding": "no-op"
+        }
+      ],
+      "concurrent_calls": 1
+    },
+    {
+      "endpoint": "/master/twl/programCode/list",
+      "method": "GET",
+      "querystring_params": [
+        "*"
+      ],
+      "output_encoding": "no-op",
+      "headers_to_pass": [
+        "*"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/master/twl/programCode/list",
+          "sd": "static",
+          "host": [
+            "http://uat-twl-web-api.incred.com"
+          ],
+          "disable_host_sanitize": false,
+          "encoding": "no-op"
+        }
+      ],
+      "concurrent_calls": 1
+    },
+    {
+      "endpoint": "/master/twl/programCode/update",
+      "method": "POST",
+      "querystring_params": [
+        "*"
+      ],
+      "output_encoding": "no-op",
+      "headers_to_pass": [
+        "*"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/master/twl/programCode/update",
+          "sd": "static",
+          "host": [
+            "http://uat-twl-web-api.incred.com"
+          ],
+          "disable_host_sanitize": false,
+          "encoding": "no-op"
+        }
+      ],
+      "concurrent_calls": 1
+    },
+    {
+      "endpoint": "/v2/decision/{TYPE}/rerun",
+      "method": "POST",
+      "querystring_params": [
+        "*"
+      ],
+      "output_encoding": "no-op",
+      "headers_to_pass": [
+        "*"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/v2/decision/{TYPE}/rerun",
+          "sd": "static",
+          "host": [
+            "http://uat-twl-web-api.incred.com"
+          ],
+          "disable_host_sanitize": false,
+          "encoding": "no-op"
+        }
+      ],
+      "concurrent_calls": 1
+    },
+    {
+      "endpoint": "/v2/vehicle/orp/add",
+      "method": "POST",
+      "querystring_params": [
+        "*"
+      ],
+      "output_encoding": "no-op",
+      "headers_to_pass": [
+        "*"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/v2/vehicle/orp/add",
+          "sd": "static",
+          "host": [
+            "http://uat-twl-web-api.incred.com"
+          ],
+          "disable_host_sanitize": false,
+          "encoding": "no-op"
+        }
+      ],
+      "concurrent_calls": 1
+    },
+    {
+      "endpoint": "/v2/vehicle/orp/edit",
+      "method": "POST",
+      "querystring_params": [
+        "*"
+      ],
+      "output_encoding": "no-op",
+      "headers_to_pass": [
+        "*"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/v2/vehicle/orp/edit",
+          "sd": "static",
+          "host": [
+            "http://uat-twl-web-api.incred.com"
+          ],
+          "disable_host_sanitize": false,
+          "encoding": "no-op"
+        }
+      ],
+      "concurrent_calls": 1
     }
   ]
 }
