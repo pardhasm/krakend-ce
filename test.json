@@ -1449,7 +1449,7 @@
       ]
     },
     {
-      "endpoint": "/application/update",
+      "endpoint": "/application/update/",
       "method": "POST",
       "querystring_params": [
         "*"
@@ -1460,7 +1460,7 @@
       ],
       "backend": [
         {
-          "url_pattern": "/application/update",
+          "url_pattern": "/application/update/",
           "sd": "static",
           "host": [
             "http://uat-pl-web-api.incred.com"
