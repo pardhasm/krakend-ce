@@ -1,0 +1,21 @@
+{
+  "github_com/devopsfaith/krakend-opencensus": {
+    "sample_rate": 100,
+    "reporting_period": 1,
+    "enabled_layers": {
+      "backend": true,
+      "router": true,
+      "proxy": true
+    },
+    "exporters": {
+      "prometheus": {
+        "port": 9094,
+        "namespace": "krakend-uat"
+      },
+      "logger": {
+        "stats": true,
+        "spans": true
+      }
+    }
+  }
+}

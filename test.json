@@ -35,25 +35,6 @@
       "backend_disabled": false,
       "endpoint_disabled": false,
       "listen_address": ":8094"
-    },
-    "github_com/devopsfaith/krakend-opencensus": {
-      "sample_rate": 100,
-      "reporting_period": 1,
-      "enabled_layers": {
-        "backend": true,
-        "router": true,
-        "proxy": true
-      },
-      "exporters": {
-        "prometheus": {
-          "port": 9094,
-          "namespace": "krakend-uat"
-        },
-        "logger": {
-          "stats": true,
-          "spans": true
-        }
-      }
     }
   },
   "timeout": "30000ms",
